@@ -279,7 +279,7 @@ if(request.getParameterMap().containsKey("Submit")){
 
 		  if (rs.next())
 		    {
-			  response.sendRedirect("client.jsp");
+			  response.sendRedirect("profile.jsp");
 		    }
 		    else
 		    {
@@ -292,7 +292,7 @@ if(request.getParameterMap().containsKey("Submit")){
 		  //out.print(session.getAttribute("firstname")); 
 		  //out.print(session.getAttribute("lastname"));
 		  //out.print(session.getAttribute("usermail"));
-		  out.println("OKEY BUDDY");
+		 // out.println("OKEY BUDDY");
 		  con.close();
 		  //String redirectURL = "http://whatever.com/myJSPFile.jsp";
 		  

@@ -24,6 +24,12 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 
+<%
+
+
+
+
+%>
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
@@ -46,63 +52,36 @@
         <div class="container-fluid">
             <div class="inner-header">
                 <div class="logo">
-                    <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                    <a href="./client.jsp"><img src="img/logo.jpg" alt=""></a>
                 </div>
                 <div class="header-right">
                     <img src="img/icons/search.png" alt="" class="search-trigger">
-                    <img src="img/icons/man.png" alt="">
-                    <a href="#">
+                    
+                    <a href="profile.jsp">
+						<img src="img/icons/man.png" alt="">
                         <img src="img/icons/bag.png" alt="">
                         <span>2</span>
                     </a>
                 </div>
                 <div class="user-access">
-                    <a href="#">Register</a>
-                    <a href="#" class="in">Sign in</a>
+                    <a href="register.jsp">login</a>
+                    <a href="logout.jsp" class="in">logout</a>
                 </div>
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li><a class="active" href="./index.html">Home</a></li>
-                        <li><a href="./categories.html">Shop</a>
-                            <ul class="sub-menu">
-                                <li><a href="product-page.html">Product Page</a></li>
-                                <li><a href="shopping-cart.html">Shopping Card</a></li>
-                                <li><a href="check-out.html">Check out</a></li>
-                            </ul>
+                        <li><a class="active" href="./client.jsp">Home</a></li>
+                        <li><a href="./bookbike.jsp">Bike</a>
+                            
                         </li>
-                        <li><a href="./product-page.html">About</a></li>
-                        <li><a href="./check-out.html">Blog</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
+                        <li><a href="profile.jsp">Profile</a></li>
+                         
+                        <li><a href="./ridelog.jsp">Ride logs</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
     </header>
     <!-- Header Info Begin -->
-    <div class="header-info">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="header-item">
-                        <img src="img/icons/delivery.png" alt="">
-                        <p>Free shipping on orders over $30 in USA</p>
-                    </div>
-                </div>
-                <div class="col-md-4 text-left text-lg-center">
-                    <div class="header-item">
-                        <img src="img/icons/voucher.png" alt="">
-                        <p>20% Student Discount</p>
-                    </div>
-                </div>
-                <div class="col-md-4 text-left text-xl-right">
-                    <div class="header-item">
-                    <img src="img/icons/sales.png" alt="">
-                    <p>30% off on dresses. Use code: 30OFF</p>
-                </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Header Info End -->
     <!-- Header End -->
 
@@ -114,12 +93,9 @@
                     <div class="page-breadcrumb">
                         <h2>Cart<span>.</span></h2>
                         <a href="#">Home</a>
-                        <a href="#">Dresses</a>
-                        <a class="active" href="#">Night Dresses</a>
+                        <a href="#">Bike</a>
+                        <a class="active" href="#">Sport bikes</a>
                     </div>
-                </div>
-                <div class="col-lg-8">
-                    <img src="img/add.jpg" alt="">
                 </div>
             </div>
         </div>
@@ -145,16 +121,16 @@
                             <td class="product-col">
                                 <img src="img/product/product-1.jpg" alt="">
                                 <div class="p-title">
-                                    <h5>Blue Dotted Shirt</h5>
+                                    <h5><%out.println(session.getAttribute("bikename")); %></h5>
                                 </div>
                             </td>
-                            <td class="price-col">$29</td>
+                            <td class="price-col"><%out.println(session.getAttribute("price"));%></td>
                             <td class="quantity-col">
                                 <div class="pro-qty">
                                     <input type="text" value="1">
                                 </div>
                             </td>
-                            <td class="total">$29</td>
+                            <td class="total"><%out.println(session.getAttribute("numofdays"));%></td>
                             <td class="product-close">x</td>
                         </tr>
                     </tbody>
@@ -179,19 +155,19 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="shipping-info">
-                            <h5>Choose a shipping</h5>
+                            <h5>Choose a deliver</h5>
                             <div class="chose-shipping">
                                 <div class="cs-item">
                                     <input type="radio" name="cs" id="one">
                                     <label for="one" class="active">
-                                        Free Standard shhipping
-                                        <span>Estimate for New York</span>
+                                        Free Standard deliver
+                                        <span>Estimate for Jaffna</span>
                                     </label>
                                 </div>
                                 <div class="cs-item">
                                     <input type="radio" name="cs" id="two">
                                     <label for="two">
-                                        Next Day delievery $10
+                                        Quick deliver +100.00 
                                     </label>
                                 </div>
                                 <div class="cs-item last">
@@ -215,10 +191,10 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="total">$29</td>
-                                            <td class="sub-total">$29</td>
-                                            <td class="shipping">$10</td>
-                                            <td class="total-cart-p">$39</td>
+                                            <td class="total">+100.00</td>
+                                            <td class="sub-total">1500.00</td>
+                                            <td class="shipping">free</td>
+                                            <td class="total-cart-p">1600.00</td>
                                         </tr>
                                     </tbody>
                                 </table>

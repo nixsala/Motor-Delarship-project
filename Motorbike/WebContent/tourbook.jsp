@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+        <%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html lang="zxx">
+
+
 
 <head>
     <meta charset="UTF-8">
@@ -48,28 +51,30 @@
         <div class="container-fluid">
             <div class="inner-header">
                 <div class="logo">
-                    <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                    <a href="./client.jsp"><img src="img/logo.jpg" alt=""></a>
                 </div>
                 <div class="header-right">
                     <img src="img/icons/search.png" alt="" class="search-trigger">
                     
-                    <a href="profile.html">
+                    <a href="profile.jsp">
 						<img src="img/icons/man.png" alt="">
                         <img src="img/icons/bag.png" alt="">
                         <span>2</span>
                     </a>
                 </div>
                 <div class="user-access">
-                    <a href="register.html">Register</a>
-                    <a href="getlogged.html" class="in">Sign in</a>
+                    <a href="register.jsp">login</a>
+                    <a href="logout.jsp" class="in">logout</a>
                 </div>
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li><a href="./index.html">Home</a></li>
-                        <li><a href="./categories.html">Shop</a>
+                        <li><a class="active" href="./client.jsp">Home</a></li>
+                        <li><a href="./bookbike.jsp">Bike</a>
+                            
                         </li>
-                        <li><a href="./index.html">About</a></li>
-                        <li><a class="active" href="./contact.html">Contact</a></li>
+                        <li><a href="profile.jsp">Profile</a></li>
+                         
+                        <li><a href="./ridelog.jsp">Ride logs</a></li>
                     </ul>
                 </nav>
             </div>
@@ -101,62 +106,22 @@
                     <form action="#" class="contact-form">
                         <div class="row">
                             <div class="col-lg-6">
-                                <input type="text" name = "StartDestination" placeholder="Start Destination...">
+                                <input type="text" name = "fullname" placeholder="Full name ">
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" name = "EndDestination" placeholder="End Destination.....">
+                                <input type="text" name = "currentaaddress" placeholder="Current Address">
                             </div>
 							<div class="col-lg-6">
-                                <input type="text" name = "PickUP" placeholder="PickUP">
+                                <input type="text" name = "nicnumber" placeholder="NIC Number">
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" name = "Drop" placeholder="Drop">
-                            </div>
-							<div class="col-lg-6">
-                                <input type="text" name = "MailAddress" placeholder="Mail Address">
+                                <input type="text" name = "numofdays" placeholder="Now Of Days">
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" name = "PhoneNumber" placeholder="Phone Number">
-                            </div>
-							<div class="col-lg-6">
-							<select  class="col-lg-6" id = "g1" name = "passengers"  title="selection" onchange = "showForm()" required>
-                                <option value = "0" selected> selected </option>
-								<option value = "solo" >solo</option>
-								<option value = "dual" >Dual</option>
-							</select>
-                            </div>
-                            
-                            <div class="col-lg-6">
-							<select  class="col-lg-6" id = "g10" name = "BikeCategory"  title="selection" onchange = "showForm()" required>
-                                <option value = "0" selected> selected </option>
-								<option value = "NakedBikes" >Naked Bikes</option>
-								<option value = "SportBikes" >Sport Bikes</option>
-								<option value = "AdventureBikes" >Adventure Bikes</option>
-								<option value = "DirtBikes" >Dirt Bikes</option>
-								<option value = "Scooters" >Scooters</option>
-							</select>
-                            </div>
-                            
-                            <div class="col-lg-6">
-							<!---<select  class="col-lg-6" id = "g2" name = "BikeCategory" title="selection" onchange = "showForm()" required> 
-                                <option value = "0" selected> Bike Category </option>
-								<option value = "1" >Power Cruisers</option>
-								<option value = "2" >Dirt Bikes</option>
-								<option value = "3" >Enduro Bikes</option>
-								<option value = "4" >Motocross Bikes</option>
-								<option value = "5" >Naked Bikes</option>
-								<option value = "6" >Scooters</option>
-								<option value = "7" ></option>
-								<option value = "8" >Trials Bikes</option>
-							</select>  --->
-                            </div>
-                            <div class="col-lg-12">
-                                <input type="text" name = "MoteristId" placeholder="Moterist id">
-                                <input type="text" name = "MotorBikeNo" placeholder="Motor Bike No">
-                               
+                                <input type="text" name = "phonenumber" placeholder="Phone Number">
                             </div>
                             <div class="col-lg-12 text-right">
-                                <button type="submit" name = "Submit" >Send message</button>
+                                <button type="submit" name = "Submit" >Book Now !</button>
                             </div>
                         </div>
                     </form>
@@ -275,6 +240,7 @@
 					<a href="" class="tumblr"><i class="fa fa-tumblr-square"></i><span>tumblr</span></a>
 				</div>
 			</div>
+		</div>
 
 <div class="container text-center pt-5">
                 <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This web application is made  <i class="icon-heart color-danger" aria-hidden="true"></i> by
@@ -301,53 +267,38 @@
 
 <%@ page import="java.sql.*, javax.sql.*, java.io.*, javax.naming.*" %>
 <%
+
+
+
+
 if(request.getParameterMap().containsKey("Submit")){ //JSP code starting from here
-	String StartDestination = request.getParameter("StartDestination");
-	String EndDestination = request.getParameter("EndDestination");
-	String PickUP = request.getParameter("PickUP");
-	String placeDrop = request.getParameter("Drop");
-	String MailAddress = request.getParameter("MailAddress");
-	String PhoneNumber = request.getParameter("PhoneNumber");
-	String passengers = request.getParameter("passengers");
-	String BikeCatogory = request.getParameter("BikeCategory");
-	String MoteristId = request.getParameter("MoteristId");
-	String MotorBikeNo = request.getParameter("MotorBikeNo");
+	String fullname = request.getParameter("fullname");
+	String currentnaddress = request.getParameter("currentaaddress");
+	String nicnumber = request.getParameter("nicnumber");
+	String numofdays = request.getParameter("numofdays");
+	String phonenumber = request.getParameter("phonenumber");
 	
-	//out.println(passengers+ BikeCatogory);
 	
-	//String MAilAddress = request.getParameter("MAilAddress");
-	//out.println(FirstName + LastName + Email + PhoneNumber + LicenseNumber + CurrentAddress);
-	//session.setAttribute("user",name); 
-	//String name=(String)session.getAttribute("user");  
-	//out.print("Hello "+name);
+	String bikename = (String)session.getAttribute("bikename");
+	String bikeid = (String) session.getAttribute("bikeid");
+	String rentermail = (String) session.getAttribute("username");
+	String renterlisence = (String) session.getAttribute("LicenseNumber");
+	String bikenumber = (String) session.getAttribute("bikenumber");
 	
-	/*
-	//<!--- JSP code --->
-	//out.println(FirstName + LastName + Email + PhoneNumber + LicenseNumber + CurrentAddress);
-	//session.setAttribute("user",name); 
-	//String name=(String)session.getAttribute("user");  
-	//out.print("Hello "+name);
+	
+	
+	String rentcost = (String) session.getAttribute("price");
+	session.setAttribute("numofdays",numofdays);
+	
+	
+	
 
-
-
-	String StartDestination = request.getParameter("StartDestination");
-	String EndDestination = request.getParameter("EndDestination");
-	String PickUP = request.getParameter("PickUP");
-	String Drop = request.getParameter("Drop");
-	String MailAddress = request.getParameter("MailAddress");
-	String PhoneNumber = request.getParameter("PhoneNumber");
-	String passengers = request.getParameter("passengers");
-	String BikeCatogory = request.getParameter("BikeCatogory");
-	String MoteristId = request.getParameter("MoteristId");
-	String MotorBikeNo = request.getParameter("MotorBikeNo");
-	           
-*/
 
   try {
 	  Class.forName("com.mysql.jdbc.Driver");
 	  Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/motorbike","root","1234");
 	  Statement stmt=con.createStatement();
-	  stmt.executeUpdate("INSERT INTO biketour (`StartDestination`,`EndDestination`,`PickUP`,`placeDrop`,`MailAddress`,`PhoneNumber`,`passengers`,`BikeCatogory`,`MoteristId`,`MotorBikeNo`) VALUES ('"+StartDestination+"', '"+EndDestination+"', '"+PickUP+"', '"+placeDrop+"','"+MailAddress+"', '"+PhoneNumber+"', '"+passengers+"', '"+BikeCatogory+"', '"+MoteristId+"', '"+MotorBikeNo+"');");
+	  stmt.executeUpdate("INSERT INTO bikerent (`fullname`,`currentnaddress`,`nicnumber`,`numofdays`,`rentdate`,`rentermail`, `renterlisence`,`bikename`,`bikeid`,`rentcost`,`bikenumber`,`phonenumber`) VALUES  ('"+fullname+"', '"+currentnaddress+"', '"+nicnumber+"', '"+numofdays+"',CURRENT_TIMESTAMP, '"+rentermail+"', '"+renterlisence+"', '"+bikename+"', '"+rentcost+"', '"+bikeid+"' , '"+bikenumber+"','"+phonenumber+"');");
 	  //session.setAttribute("firstname",FirstName);  
 	  //session.setAttribute("lastname",LastName);  
 	  //session.setAttribute("usermail",Email); 
@@ -356,9 +307,21 @@ if(request.getParameterMap().containsKey("Submit")){ //JSP code starting from he
 	  //out.print(session.getAttribute("usermail"));
 	  con.close();
 	  //String redirectURL = "http://whatever.com/myJSPFile.jsp";
-	  response.sendRedirect("google.com");
-  }catch(Exception e){ out.println("You have an error"+e); response.sendRedirect("tourbook.jsp");} 
+	  response.sendRedirect("payment.jsp");
+  }catch(Exception e){ System.out.println("You have an error"+e); response.sendRedirect("tourbook.jsp");} 
   /*
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 	  // the mysql insert statement
       String query = " insert into user (firstName, lastName, email, password,isAdmin, phoneNumber, LicenseNumber,CurrentAddress)"
       + " values (?, ?, ?, ?, ?, ?, ?)";
@@ -384,6 +347,53 @@ if(request.getParameterMap().containsKey("Submit")){ //JSP code starting from he
  */
 	
   }
+ 
+ 
+	/*create table bikerent(
+	rentid int NOT NULL AUTO_INCREMENT auto_increment,
+	fullname varchar(255),
+	currentnaddress varchar(255),
+	nicnumber varchar(255),
+	numofdays varchar(255),
+	rentdate datetime(6),
+	rentermail varchar(255),
+	renterlisence varchar(255),
+	bikename varchar(255),
+	bikeid int(4),
+	rentcost varchar(255),
+	bikenumber varchar(255),
+	primary key(rentid)
+	);
+*/
+//out.println(passengers+ BikeCatogory);
+
+//String MAilAddress = request.getParameter("MAilAddress");
+//out.println(FirstName + LastName + Email + PhoneNumber + LicenseNumber + CurrentAddress);
+//session.setAttribute("user",name); 
+//String name=(String)session.getAttribute("user");  
+//out.print("Hello "+name);
+
+/*
+//<!--- JSP code --->
+//out.println(FirstName + LastName + Email + PhoneNumber + LicenseNumber + CurrentAddress);
+//session.setAttribute("user",name); 
+//String name=(String)session.getAttribute("user");  
+//out.print("Hello "+name);
+
+
+
+String StartDestination = request.getParameter("StartDestination");
+String EndDestination = request.getParameter("EndDestination");
+String PickUP = request.getParameter("PickUP");
+String Drop = request.getParameter("Drop");
+String MailAddress = request.getParameter("MailAddress");
+String PhoneNumber = request.getParameter("PhoneNumber");
+String passengers = request.getParameter("passengers");
+String BikeCatogory = request.getParameter("BikeCatogory");
+String MoteristId = request.getParameter("MoteristId");
+String MotorBikeNo = request.getParameter("MotorBikeNo");
+    
+*/
 
 %>
 

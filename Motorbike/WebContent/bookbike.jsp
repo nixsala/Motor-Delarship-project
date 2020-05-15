@@ -165,7 +165,7 @@
                                     <img src="img/products/img-3.jpg" alt="">
                                     <div class="p-status">new</div>
                                     <div class="hover-icon">
-                                        <a href="img/products/img-3.jpg" class="pop-up"><img
+                                        <a href= class="pop-up"><img
                                                 src="img/icons/zoom-plus.png" alt=""></a>
                                     </div>
                                 </figure>
