@@ -1,32 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.sql.*, javax.sql.*, java.io.*, javax.naming.*" %>
 <!DOCTYPE html>
 <html lang="zxx">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Yoga Studio Template">
-    <meta name="keywords" content="Yoga, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Bike | login </title>
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
-        rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+<%@include file="header.jsp" %>
+<title>Bike | Login</title>
 </head>
 
 <body>
+
+    <header class="header-section">
+        <div class="container-fluid">
+            <div class="inner-header">
+                <div class="logo">
+                    <a href="./index"><img src="img/logo.jpg" alt=""></a>
+                </div>
+                <div class="header-right">
+                    <img src="img/icons/search.png" alt="" class="search-trigger">
+                    
+                    <a href="login">
+						<img src="img/icons/man.png" alt="">
+                        <img src="img/icons/bag.png" alt="">
+                        <span>2</span>
+                    </a>
+                </div>
+                <div class="user-access">
+                    <a href="register">Register</a>
+                    <a href="login" class="in">Sign in</a>
+                </div>
+                <nav class="main-menu mobile-menu">
+                    <ul>
+                        <li><a class="active" href="./index">Home</a></li>
+                        <li><a href="./bike">Bike</a>
+                            
+                        </li>
+                        <li><a href="index">About</a></li>
+                         
+                        <li><a  href="./feedback">Review</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -44,39 +61,7 @@
 	<!-- Search model end -->
 
     <!-- Header Section Begin -->
-    <header class="header-section">
-        <div class="container-fluid">
-            <div class="inner-header">
-                <div class="logo">
-                    <a href="./index.html"><img src="img/logo.jpg" alt=""></a>
-                </div>
-                <div class="header-right">
-                    <img src="img/icons/search.png" alt="" class="search-trigger">
-                    
-                    <a href="getlogged.html">
-					<img src="img/icons/man.png" alt="" >
-                        <img src="img/icons/bag.png" alt="">
-                        <span>2</span>
-                    </a>
-                </div>
-                <div class="user-access">
-                    <a href="pushstore.html">Register</a>
-                    <a href="getlogged.html" class="in">Sign in</a>
-                </div>
-                <nav class="main-menu mobile-menu">
-                    <ul>
-                        <li><a class="active" href="./index.html">Home</a></li>
-                        <li><a href="./categories.html">Bike</a>
-                            
-                        </li>
-                        <li><a href="index.html">About</a></li>
-                         
-                        <li><a href="./contact.html">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
+
     <!-- Header Info Begin -->
     <!-- Header Info End -->
     <!-- Header End -->
@@ -183,8 +168,8 @@
                             <ul>
                                 <li>Search</li>
                                 <li>Privacy Policy</li>
-                                <li>2019 Lookbook</li>
-                                <li>Shipping & Delivery</li>
+                                <li>2019 Look back</li>
+                                <li>Shipping/Delivery</li>
                                 <li>Gallery</li>
                             </ul>
                         </div>
@@ -237,19 +222,7 @@
 		</div>
     </footer>
     <!-- Footer Section End -->
-
-    <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/main.js"></script>
-</body>
-
-
+<%@include file="footer.jsp" %>
 <%@ page import="java.sql.*, javax.sql.*, java.io.*, javax.naming.*" %>
 
 <%
@@ -273,30 +246,23 @@ if(request.getParameterMap().containsKey("Submit")){
 	
 	try {
 		  Class.forName("com.mysql.jdbc.Driver");
-		  Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/motorbike","root","1234");
+		  Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3308/motorbike","root","");
 		  Statement stmt=con.createStatement();
 		  ResultSet rs=stmt.executeQuery("select * from user where email = '"+username+"' and password = '"+password+"'" );
 
 		  if (rs.next())
 		    {
-			  response.sendRedirect("profile.jsp");
+			  response.sendRedirect("profile");
 		    }
 		    else
 		    {
-		    	response.sendRedirect("login.jsp");
+		    	response.sendRedirect("login");
 		    }
 		  
-		  session.setAttribute("username",username);  
-		  //session.setAttribute("lastname",LastName);  
-		  //session.setAttribute("usermail",Email); 
-		  //out.print(session.getAttribute("firstname")); 
-		  //out.print(session.getAttribute("lastname"));
-		  //out.print(session.getAttribute("usermail"));
-		 // out.println("OKEY BUDDY");
+		  session.setAttribute("username",username);
 		  con.close();
-		  //String redirectURL = "http://whatever.com/myJSPFile.jsp";
 		  
-	  }catch(Exception e){ out.println(e); response.sendRedirect("login.jsp");}
+	  }catch(Exception e){ out.println(e); response.sendRedirect("login");}
 	
 }
 

@@ -1,5 +1,4 @@
-Author 	  : Nixsala Nadesan
-facebook  : facebook.com/nixsalanadesan
+Auther 	  : Nixsala Nadesan
 
 Mail 	  : nixsala27@gmail.com
 
