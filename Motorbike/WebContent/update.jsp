@@ -5,7 +5,7 @@
 <html lang="zxx">
 
 <head>
-<%@include file="header.jsp" %>jsp" %>
+<%@include file="header.jsp" %>
 <title>Bike | Update</title>
 </head>
 
@@ -19,8 +19,9 @@
 	<div class="search-model">
 		<div class="h-100 d-flex align-items-center justify-content-center">
 			<div class="search-close-switch">+</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input" placeholder="Search here.....">
+			<form action = "search" method = "POST" class="search-model-form">
+				<input type="text" name = "search" id="search-input" placeholder="Enter the bike name">
+				<input type="submit" name = "send" id="search-input" value = "Search here...">
 			</form>
 		</div>
 	</div>
@@ -201,7 +202,35 @@
 
 
 <% 
+
 String username = (String)session.getAttribute("username");
+String id="";
+try {
+	  Class.forName("com.mysql.jdbc.Driver");
+	  Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3308/motorbike","root","");
+	  Statement stmt=con.createStatement();
+	  ResultSet rs=stmt.executeQuery("select * from user where email = '"+username+"'");
+	  while(rs.next()){
+		  
+	  id = rs.getString(1);
+	  
+	  session.setAttribute("id",rs.getString(1));
+	  session.setAttribute("firstname",rs.getString(2));
+	  session.setAttribute("lastname",rs.getString(3));
+	  session.setAttribute("email",rs.getString(4)); 
+	  session.setAttribute("password",rs.getString(5));
+	  session.setAttribute("isAdmin",rs.getString(6));
+	  session.setAttribute("phoneNumber",rs.getString(7));
+	  session.setAttribute("LicenseNumber",rs.getString(8));
+	  session.setAttribute("CurrentAddress",rs.getString(9));
+	  
+	  }
+
+	  con.close();
+	  
+}catch(Exception e){ System.out.println(e);}
+
+
 
 if(request.getParameterMap().containsKey("Submit")){
 	String FirstName = request.getParameter("FirstName");
@@ -213,9 +242,9 @@ if(request.getParameterMap().containsKey("Submit")){
 	
 	  try {
 		  Class.forName("com.mysql.jdbc.Driver");
-		  Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3308/motorbike","root","1234");
+		  Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/motorbike","root","1234");
 		  Statement stmt=con.createStatement();
-		  stmt.executeUpdate("UPDATE user SET firstName='"+FirstName+"' ,lastName = '"+LastName+"' ,password = '"+Password+"' ,  isAdmin = 'NO' ,  phoneNumber = '"+PhoneNumber+"' ,  LicenseNumber = '"+LicenseNumber+"' ,  CurrentAddress = '"+CurrentAddress+"'  WHERE email = '"+username+"'");
+		  stmt.executeUpdate("UPDATE user SET firstName='"+FirstName+"' ,lastName = '"+LastName+"' ,password = '"+Password+"' ,  isAdmin = 'NO' ,  phoneNumber = '"+PhoneNumber+"' ,  LicenseNumber = '"+LicenseNumber+"' ,  CurrentAddress = '"+CurrentAddress+"'  WHERE id = '"+id+"'");
 		   
 		  
 		  session.setAttribute("firstname",FirstName);  

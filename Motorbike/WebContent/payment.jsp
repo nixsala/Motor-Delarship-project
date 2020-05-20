@@ -17,8 +17,9 @@
 	<div class="search-model">
 		<div class="h-100 d-flex align-items-center justify-content-center">
 			<div class="search-close-switch">+</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input" placeholder="Search here.....">
+			<form action = "search" method = "POST" class="search-model-form">
+				<input type="text" name = "search" id="search-input" placeholder="Enter the bike name">
+				<input type="submit" name = "send" id="search-input" value = "Search here...">
 			</form>
 		</div>
 	</div>
@@ -122,7 +123,7 @@
                     </div>
                     <div class="col-lg-5 offset-lg-1 text-left text-lg-right">
                         <div class="site-btn clear-btn">Clear Cart</div>
-                        <div class="site-btn update-btn">Update Cart</div>
+                        <div class="site-btn update-btn">Add Cart</div>
                     </div>
                 </div>
             </div>

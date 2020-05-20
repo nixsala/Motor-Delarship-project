@@ -14,9 +14,13 @@
 String username = (String)session.getAttribute("username");
   try {
 	  Class.forName("com.mysql.jdbc.Driver");
-	  Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3308/motorbike","root","1234");
+	  Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3308/motorbike","root","");
 	  Statement stmt=con.createStatement();
 	  ResultSet rs=stmt.executeQuery("select * from bikerent where rentermail = '"+username+"' ORDER BY rentid DESC LIMIT 1;");
+	  boolean val = rs.next(); //next() returns false if there are no-rows retrieved 
+      if(val==false){
+    	  response.sendRedirect("ride");
+       }
 	  while(rs.next()){
 	  	  
 	  session.setAttribute("rentid",rs.getInt(1));
@@ -50,8 +54,9 @@ String username = (String)session.getAttribute("username");
 	<div class="search-model">
 		<div class="h-100 d-flex align-items-center justify-content-center">
 			<div class="search-close-switch">+</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input" placeholder="Search here.....">
+			<form action = "search" method = "POST" class="search-model-form">
+				<input type="text" name = "search" id="search-input" placeholder="Enter the bike name">
+				<input type="submit" name = "send" id="search-input" value = "Search here...">
 			</form>
 		</div>
 	</div>
@@ -186,7 +191,7 @@ String username = (String)session.getAttribute("username");
                                 
                             </div>
                             <div class="col-lg-12 text-right">
-                                <button type="submit" formaction="">Delete/Drop</button>
+                                <button type="submit" name = "Submit" formaction="">Cancel book / Delete</button>
                             </div>
                         </div>
                     </form>
@@ -232,4 +237,35 @@ String username = (String)session.getAttribute("username");
 <%@include file="footer.jsp" %>
     <!-- Footer Section End -->
 </body>
+
+<%@ page import="java.sql.*, javax.sql.*, java.io.*, javax.naming.*" %>
+<%
+if(request.getParameterMap().containsKey("Submit")){ //JSP code starting from here 
+
+
+  try {
+	  Class.forName("com.mysql.jdbc.Driver");
+	  Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3308/motorbike","root","");
+	  Statement stmt=con.createStatement();
+	  stmt.executeUpdate("DELETE FROM bikerent WHERE  rentermail = '"+username+"' order by rentid DESC LIMIT 1;");
+	  
+	  
+	  Statement check_connection =con.createStatement();
+	  ResultSet rs=check_connection.executeQuery("select * from bikerent where rentermail = '"+username+"' ORDER BY rentid DESC LIMIT 1;");
+	  boolean val = rs.next(); //next() returns false if there are no-rows retrieved 
+      if(val==false){
+    	  response.sendRedirect("ride");
+       }
+      else{
+    	  response.sendRedirect("ridelog");
+      }
+	  
+      con.close();
+	  
+  }catch(Exception e){ System.out.println(e); response.sendRedirect("ridelog");}
+	
+  }
+
+%>
+
 </html>

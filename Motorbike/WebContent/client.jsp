@@ -18,8 +18,9 @@
 	<div class="search-model">
 		<div class="h-100 d-flex align-items-center justify-content-center">
 			<div class="search-close-switch">+</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input" placeholder="Search here.....">
+			<form action = "search" method = "POST" class="search-model-form">
+				<input type="text" name = "search" id="search-input" placeholder="Enter the bike name">
+				<input type="submit" name = "send" id="search-input" value = "Search here...">
 			</form>
 		</div>
 	</div>
@@ -318,8 +319,8 @@
                             <h2> <br />Who Am I ? </h2>
                         </div>
                         <p>Enjoy your freedom with Bike tour booking We are Motorbike renters . 
-						We provide easy way to organise hiring a motor bike while you were in Srilanka. 
-						business is to give customers easy and affordable alternative of travelling because most of the young
+						We provide easy way to organize hiring a motor bike while you were in Srilanka. 
+						business is to give customers easy and affordable alternative of traveling because most of the young
 						tourists organize and travel themselves without any travel agent or travel guide consult. s</p>
                         <a href="#" class="primary-btn look-btn">See More</a>
                     </div>

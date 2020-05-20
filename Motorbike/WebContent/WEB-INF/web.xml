@@ -11,8 +11,8 @@
     <res-sharing-scope>Shareable</res-sharing-scope>              
   </resource-ref>
   
- <servlet>   
-  <servlet-name>login</servlet-name>
+ <servlet>
+ <servlet-name>login</servlet-name>
   <jsp-file>/login.jsp</jsp-file>
 </servlet>
 <servlet-mapping>
@@ -144,6 +144,106 @@
 <servlet-mapping>
   <servlet-name>index</servlet-name>
   <url-pattern>/index</url-pattern>
+</servlet-mapping>
+
+<servlet>   
+  <servlet-name>ride</servlet-name>
+  <jsp-file>/ride.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>ride</servlet-name>
+  <url-pattern>/ride</url-pattern>
+</servlet-mapping>
+
+<servlet>   
+  <servlet-name>search</servlet-name>
+  <jsp-file>/search.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>search</servlet-name>
+  <url-pattern>/search</url-pattern>
+</servlet-mapping>
+
+<servlet>   
+  <servlet-name>bikes</servlet-name>
+  <jsp-file>/Cpanel/bikes.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>bikes</servlet-name>
+  <url-pattern>/bikes</url-pattern>
+</servlet-mapping>
+
+<servlet>   
+  <servlet-name>logs</servlet-name>
+  <jsp-file>/Cpanel/logs.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>logs</servlet-name>
+  <url-pattern>/logs</url-pattern>
+</servlet-mapping>
+
+<servlet>   
+  <servlet-name>peoples</servlet-name>
+  <jsp-file>/Cpanel/peoples.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>peoples</servlet-name>
+  <url-pattern>/peoples</url-pattern>
+</servlet-mapping>
+
+<servlet>   
+  <servlet-name>profiles</servlet-name>
+  <jsp-file>/Cpanel/profile.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>profiles</servlet-name>
+  <url-pattern>/profiles</url-pattern>
+</servlet-mapping>
+
+<servlet>   
+  <servlet-name>ridelogs</servlet-name>
+  <jsp-file>/Cpanel/ridelogs.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>ridelogs</servlet-name>
+  <url-pattern>/ridelogs</url-pattern>
+</servlet-mapping>
+
+<servlet>   
+  <servlet-name>admins</servlet-name>
+  <jsp-file>/Cpanel/admin.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>admins</servlet-name>
+  <url-pattern>/admins</url-pattern>
+</servlet-mapping>
+
+<servlet>   
+  <servlet-name>admin</servlet-name>
+  <jsp-file>/admin.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>admin</servlet-name>
+  <url-pattern>/admin</url-pattern>
+</servlet-mapping>
+
+<servlet>   
+  <servlet-name>updates</servlet-name>
+  <jsp-file>/Cpanel/updates.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>updates</servlet-name>
+  <url-pattern>/updates</url-pattern>
+</servlet-mapping>
+
+<servlet>   
+  <servlet-name>delete</servlet-name>
+  <jsp-file>/Cpanel/delete.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>delete</servlet-name>
+  <url-pattern>/delete</url-pattern>   
+  
 </servlet-mapping>
 
 </web-app>

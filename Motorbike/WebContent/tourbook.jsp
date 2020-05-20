@@ -6,7 +6,7 @@
 
 
 <head>
-<%@include file="header.jsp" %>%>
+<%@include file="header.jsp" %>
 <title>Bike | Booking</title>
 </head>
 
@@ -20,8 +20,9 @@
 	<div class="search-model">
 		<div class="h-100 d-flex align-items-center justify-content-center">
 			<div class="search-close-switch">+</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input" placeholder="Search here.....">
+			<form action = "search" method = "POST" class="search-model-form">
+				<input type="text" name = "search" id="search-input" placeholder="Enter the bike name">
+				<input type="submit" name = "send" id="search-input" value = "Search here...">
 			</form>
 		</div>
 	</div>
@@ -91,6 +92,12 @@
                             </div>
                             <div class="col-lg-6">
                                 <input type="text" name = "currentaaddress" placeholder="Current Address">
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" name = "arrivaldesination" placeholder="Arrival Desination">
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" name = "departuredesination" placeholder="Departure Desination">
                             </div>
 							<div class="col-lg-6">
                                 <input type="text" name = "nicnumber" placeholder="NIC Number">
@@ -162,6 +169,9 @@ if(request.getParameterMap().containsKey("Submit")){ //JSP code starting from he
 	String numofdays = request.getParameter("numofdays");
 	String phonenumber = request.getParameter("phonenumber");
 	
+	String arrivaldesination = request.getParameter("arrivaldesination");
+	String departuredesination = request.getParameter("departuredesination");
+	
 	
 	String bikename = (String)session.getAttribute("bikename");
 	String bikeid = (String) session.getAttribute("bikeid");
@@ -173,9 +183,9 @@ if(request.getParameterMap().containsKey("Submit")){ //JSP code starting from he
 
   try {
 	  Class.forName("com.mysql.jdbc.Driver");
-	  Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3308/motorbike","root","1234");
+	  Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3308/motorbike","root","");
 	  Statement stmt=con.createStatement();
-	  stmt.executeUpdate("INSERT INTO bikerent (`fullname`,`currentnaddress`,`nicnumber`,`numofdays`,`rentdate`,`rentermail`, `renterlisence`,`bikename`,`bikeid`,`rentcost`,`bikenumber`,`phonenumber`) VALUES  ('"+fullname+"', '"+currentnaddress+"', '"+nicnumber+"', '"+numofdays+"',CURRENT_TIMESTAMP, '"+rentermail+"', '"+renterlisence+"', '"+bikename+"', '"+rentcost+"', '"+bikeid+"' , '"+bikenumber+"','"+phonenumber+"');");
+	  stmt.executeUpdate("INSERT INTO bikerent (`fullname`,`currentnaddress`,`nicnumber`,`numofdays`,`rentdate`,`rentermail`, `renterlisence`,`bikename`,`bikeid`,`rentcost`,`bikenumber`,`phonenumber`,`arrivaldesination`,`departuredesination`) VALUES  ('"+fullname+"', '"+currentnaddress+"', '"+nicnumber+"', '"+numofdays+"',CURRENT_TIMESTAMP, '"+rentermail+"', '"+renterlisence+"', '"+bikename+"', '"+rentcost+"', '"+bikeid+"' , '"+bikenumber+"','"+phonenumber+"',,'"+arrivaldesination+"',,'"+departuredesination+"');");
 	  con.close();
 	  response.sendRedirect("payment");
   }catch(Exception e){

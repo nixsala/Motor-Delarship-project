@@ -78,7 +78,7 @@
 
 <div class="container text-center pt-5">
                 <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This web application is made  <i class="icon-heart color-danger" aria-hidden="true"></i> by
-				<a href="https://facebook.com/kirupanoffcl" target="_blank">Kirupan Inpathas</a></p>
+				<a href="https://facebook.com/" target="_blank">Nixsala Nadesan</a></p>
 </div>
 
 </div>

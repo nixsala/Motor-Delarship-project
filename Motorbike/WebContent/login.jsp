@@ -53,8 +53,9 @@
 	<div class="search-model">
 		<div class="h-100 d-flex align-items-center justify-content-center">
 			<div class="search-close-switch">+</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input" placeholder="Search here.....">
+			<form action = "search" method = "POST" class="search-model-form">
+				<input type="text" name = "search" id="search-input" placeholder="Enter the bike name">
+				<input type="submit" name = "send" id="search-input" value = "Search here...">
 			</form>
 		</div>
 	</div>
@@ -226,24 +227,10 @@
 <%@ page import="java.sql.*, javax.sql.*, java.io.*, javax.naming.*" %>
 
 <%
-
-//JSP code starting from here 
-
 String MAilAddress = request.getParameter("MAilAddress");
-
-//REGISTER Info 
-
-
 if(request.getParameterMap().containsKey("Submit")){
 	String username = request.getParameter("UserName");
 	String password = request.getParameter("PassWord");
-	//out.println(username+password);
-	
-	
-
-
-
-	
 	try {
 		  Class.forName("com.mysql.jdbc.Driver");
 		  Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3308/motorbike","root","");
@@ -258,18 +245,10 @@ if(request.getParameterMap().containsKey("Submit")){
 		    {
 		    	response.sendRedirect("login");
 		    }
-		  
-		  session.setAttribute("username",username);
+		  session.setAttribute("username",username);  
+		  session.setAttribute("password",password);
 		  con.close();
-		  
 	  }catch(Exception e){ out.println(e); response.sendRedirect("login");}
-	
 }
-
-
 %>
-
-
-
-
 </html>
